@@ -5,6 +5,9 @@
 このプロジェクトにおいては以下のルールとする。
 
 * ソース管理として GitLab を利用
+* エディタとして VSCode を利用
+** `.gitignore` の記述内容は https://github.com/github/gitignore/blob/main/Global/VisualStudioCode.gitignore[A collection of .gitignore templates のもの]を
+参考にし、設定ファイル関連はチーム内で共有する想定で設定すること
 * プロジェクトの構成は以下
 +
 --
@@ -25,7 +28,7 @@
 * ドキュメントは基本 Asciidoc 形式で作成。ただし、 `README.md` については Markdown 形式で作成（ GitLab が作成する
 テンプレートを元に、簡単な内容に留めたものとする）
 * git 関連の操作については、基本的にはコマンドラインで実施
-** VSCode などエディタの GUI 上でも色々可能だが、練習のため
+** VSCode の GUI 上でも色々可能だが、練習のため
 * ブランチ管理は GitLab Flow
 ** https://about.gitlab.com/ja-jp/topics/version-control/what-is-gitlab-flow/[GitLab Flowとは]
 ** https://about.gitlab.com/ja-jp/topics/version-control/what-are-gitlab-flow-best-practices/[GitLab Flowのベストプラクティスとは？]
