@@ -1,0 +1,7 @@
+= 設計書（ Design Document ）
+
+* 基本設計書（ Basic Design Document ） : 以下のような外部設計を行う。
+** 機能設計（ Functional Design ） : どのような機能を持つかなど
+** ユーザーインターフェース設計（ User Interface Design ） : どのような画面なのかなど
+* 詳細設計書（ Detailed Design Document ） : 以下のような内部設計を行う。
+
