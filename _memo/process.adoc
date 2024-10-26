@@ -64,6 +64,9 @@ GitLab の場合、 issue 作成からの流れでマージリクエストを作
 ドキュメント限定で https://creativecommons.org/share-your-work/cclicenses/[Creative Commons licenses] も
 適用するかどうか検討中
 --
+* ビルド用スクリプトはプロジェクトのルート直下に配置
+** ビルドツール（検討中）を使う場合は各ツールに合わせる。
+
 
 
 == 開発の流れ
