@@ -74,6 +74,8 @@ GitLab の場合、 issue 作成からの流れでマージリクエストを作
 *** go / rust などビルド機能や周辺ビルドツール付きの言語 : 各言語用のビルドツール
 ** ビルド結果判定において、デフォルトはビルド失敗とし、成果物チェックに全て通ったらビルド成功とする
 * 可能であればコンテナエンジンを活用
+* テストの結果出力は TAP(Test Anything Protocol) を活用
+** https://testanything.org/[Test Anything Protocol]
 
 
 
