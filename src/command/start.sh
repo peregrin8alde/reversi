@@ -1,12 +1,14 @@
 #!/bin/bash
 
-source model/core/ReversiModel.sh
-source viewmodel/title/TitleViewModel.sh
-source view/title/TitleView.sh
+BASE_DIR=$(cd "$(dirname "${BASH_SOURCE:-$0}")/.." && pwd)
 
-ReversiModel "data.txt"
+source ${BASE_DIR}/lib/ReversiModel.sh
+source ${BASE_DIR}/lib/TitleViewModel.sh
+source ${BASE_DIR}/lib/TitleView.sh
+
+ReversiModel "${BASE_DIR}/data.txt"
 TitleViewModel
-TitleView
+TitleView ${BASE_DIR}
 
 
 while true; do

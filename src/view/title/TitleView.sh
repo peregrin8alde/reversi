@@ -1,9 +1,7 @@
 #!/bin/bash
-source model/core/ReversiModel.sh
 
 function TitleView() {
-  SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE:-$0}")" && pwd)
-  titleResource="${SCRIPT_DIR}/resource/Title.txt"
+  titleResource="$1/lib/Title.txt"
   column_count=0
 }
 

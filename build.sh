@@ -1,5 +1,7 @@
 #!/bin/sh
 
+make all
+
 echo "build success!!"
 
 
