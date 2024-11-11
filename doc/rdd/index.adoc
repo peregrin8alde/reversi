@@ -1,2 +1,25 @@
 = 要件定義書（ Requirement Definition Document ）
 
+include::_attributes.adoc[]
+:xrefstyle: full
+
+== はじめに
+
+本書の目的（要件定義書としてどんな情報を提供したいか）など
+
+:leveloffset: +1
+
+include::01/index.adoc[]
+
+include::02/index.adoc[]
+
+include::03/index.adoc[]
+
+include::04/index.adoc[]
+
+include::05/index.adoc[]
+
+:leveloffset: -1
+
+
+&#169; 2024 Okada Hayato.
