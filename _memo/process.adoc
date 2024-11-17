@@ -34,7 +34,7 @@
 ** https://about.gitlab.com/ja-jp/topics/version-control/what-are-gitlab-flow-best-practices/[GitLab Flowのベストプラクティスとは？]
 ** `main` ブランチは常にリリース可能な状態のブランチ
 ** 開発用として `main` から `feature/開発内容` ブランチを作成し、テストが終わったら `main` ブランチにマージ（元ブランチは削除）して再テスト
-** リリース用として `production` ブランチを作成し、リリース用バージョン作成時に `main` ブランチをマージして本番環境にデプロ
+** リリース用として `production` ブランチを作成し、リリース用バージョン作成時に `main` ブランチをマージして本番環境にデプロイ
 *** `main` ブランチは常にリリース可能な想定だが、更新するたびに即本番環境にデプロイしたいとは限らないため
 *** `production` ブランチはリリースタイミング以外では更新されないことになる
 ** 本番用デプロイの前に検証用デプロイをする場合は `staging` ブランチを用意し `main` と `production` の間に挟む
@@ -75,8 +75,15 @@ GitLab の場合、 issue 作成からの流れでマージリクエストを作
 ** ビルド結果判定において、デフォルトはビルド失敗とし、成果物チェックに全て通ったらビルド成功とする？
 ** ビルドは生産物ごとにできるだけ独立して並列や個別実行可能にし、失敗したものだけや更新されたものだけ処理されるようにする
 * 可能であればコンテナエンジンを活用
-* テストの結果出力は TAP(Test Anything Protocol) を活用
-** https://testanything.org/[Test Anything Protocol]
+* テストについて
+** テストの結果出力は TAP(Test Anything Protocol) を活用
+*** https://testanything.org/[Test Anything Protocol]
+** テストに使うツールやそのセットアップ方法は開発規約か開発環境構築方法の資料に記載
+* 環境構築方法について
+** 開発規約に記載する。
+* 開発規約について
+** CONTRIBUTING.md として作成
+
 
 
 
