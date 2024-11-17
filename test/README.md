@@ -22,12 +22,21 @@ $ cd bats-core
 $ sudo ./install.sh /usr/local
 ```
 
+bats-support や bats-assert も追加しておく
+
+```
+$ sudo mkdir -p /usr/local/lib/bats/test_helper
+$ sudo git clone https://github.com/bats-core/bats-support.git /usr/local/lib/bats/test_helper/bats-support
+$ sudo git clone https://github.com/bats-core/bats-assert.git /usr/local/lib/bats/test_helper/bats-assert
+```
+
 アンインストールしたい場合は以下を実行
 
 ```
 $ git clone https://github.com/bats-core/bats-core.git
 $ cd bats-core
 $ sudo ./uninstall.sh /usr/local
+$ sudo rm -rf /usr/local/lib/bats
 ```
 
 `man 1 bats` （ usage manual ）や `man 7 bats` （ writing test files manual ）でマニュアルを参照可能
@@ -94,3 +103,12 @@ Usage: bats [OPTIONS] <tests>
 
   For more information, see https://github.com/bats-core/bats-core
 ```
+
+
+## テスト実行方法
+
+```
+export BATS_LIB_PATH=/usr/local/lib/bats
+bats --tap test/test.bats
+```
+
