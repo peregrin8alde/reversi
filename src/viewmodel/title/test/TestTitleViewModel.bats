@@ -12,8 +12,6 @@ setup() {
     TitleViewModel
 }
 
-
-#
 @test "test event_enter 01" {
     run event_enter
     assert_output '1'
