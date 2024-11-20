@@ -7,15 +7,14 @@ setup() {
     DIR="$( cd "$( dirname "$BATS_TEST_FILENAME" )" >/dev/null 2>&1 && pwd )"
 
     BASE_DIR=${DIR}/stub
+    source ${DIR}/../src/TitleViewModel.sh
+
+    TitleViewModel
 }
 
 
 #
-@test "TitleViewModel test 01" {
-    source ${DIR}/../src/TitleViewModel.sh
-
-    TitleViewModel
-
+@test "test event_enter 01" {
     run event_enter
     assert_output '1'
 }
