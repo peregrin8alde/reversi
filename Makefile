@@ -22,6 +22,11 @@ all : $(SRCS)
 	chmod +x ${TARGETDIR}/lib/*
 	ls -lha ${TARGETDIR}/lib/
 
-.PHONY : clean
+TitleViewModel : $(SRCDIR)/viewmodel/title/src/TitleViewModel.sh
+	cd $(SRCDIR)/viewmodel/title && $(MAKE)
+
+
+.PHONY : clean test
+
 clean :
 	rm -rf ${TARGETDIR}
