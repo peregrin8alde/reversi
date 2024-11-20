@@ -5,13 +5,15 @@ setup() {
     # use $BATS_TEST_FILENAME instead of ${BASH_SOURCE[0]} or $0,
     # as those will point to the bats executable's location or the preprocessed file respectively
     DIR="$( cd "$( dirname "$BATS_TEST_FILENAME" )" >/dev/null 2>&1 && pwd )"
+
+    BASE_DIR=${DIR}/stub
 }
 
-@test "TitleViewModel test 01" {
-    source ${DIR}/../src/model/core/ReversiModel.sh
-    source ${DIR}/../src/viewmodel/title/TitleViewModel.sh
 
-    ReversiModel ${BATS_RUN_TMPDIR}/data.txt
+#
+@test "TitleViewModel test 01" {
+    source ${DIR}/../src/TitleViewModel.sh
+
     TitleViewModel
 
     run event_enter

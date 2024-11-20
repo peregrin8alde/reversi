@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source ${BASE_DIR}/lib/ReversiModel.sh
+
 function TitleViewModel() {
   return 0
 }

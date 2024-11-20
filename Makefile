@@ -5,7 +5,7 @@ COMMANDS   = $(SRCDIR)/command/start.sh
 MODELS     = $(SRCDIR)/model/core/ReversiModel.sh
 VIEWS      = $(SRCDIR)/view/title/resource/Title.txt \
 	       $(SRCDIR)/view/title/TitleView.sh
-VIEWMODELS = $(SRCDIR)/viewmodel/title/TitleViewModel.sh
+VIEWMODELS = $(SRCDIR)/viewmodel/title/src/TitleViewModel.sh
 BINSRC     = $(COMMANDS)
 LIBSRC     = $(MODELS) $(VIEWS) $(VIEWMODELS)
 SRC	= $(BINSRC) $(LIBSRC)
