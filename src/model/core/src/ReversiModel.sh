@@ -5,6 +5,8 @@
 function ReversiModel() {
   datafile=$1
   set_count 0
+
+  return 0
 }
 
 function set_count() {
@@ -14,7 +16,6 @@ function set_count() {
 }
 
 function get_count() {
-  # シェルのため、呼び出し元への応答は標準出力で実施、 return は正常／異常の判定用
   count=$(cat "${datafile}")
   echo ${count}
 
@@ -22,7 +23,6 @@ function get_count() {
 }
 
 function add_count() {
-  # シェルのため、呼び出し元への応答は標準出力で実施、 return は正常／異常の判定用
   count=$(get_count)
   rtn=$?
   if [ ${rtn} != 0 ]; then

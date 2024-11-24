@@ -22,12 +22,15 @@ $ cd bats-core
 $ sudo ./install.sh /usr/local
 ```
 
-bats-support や bats-assert も追加しておく
+bats-support / bats-assert / bats-file も追加しておく
+
+参考 : https://bats-core.readthedocs.io/en/stable/writing-tests.html#libraries-and-add-ons
 
 ```
 $ sudo mkdir -p /usr/local/lib/bats/test_helper
 $ sudo git clone https://github.com/bats-core/bats-support.git /usr/local/lib/bats/test_helper/bats-support
 $ sudo git clone https://github.com/bats-core/bats-assert.git /usr/local/lib/bats/test_helper/bats-assert
+$ sudo git clone https://github.com/bats-core/bats-file.git /usr/local/lib/bats/test_helper/bats-file
 ```
 
 アンインストールしたい場合は以下を実行

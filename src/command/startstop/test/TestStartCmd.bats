@@ -12,12 +12,9 @@ teardown() {
     true
 }
 
-@test "test event_enter 01" {
-    source TitleViewModel.sh
-    
-    TitleViewModel
-
-    run event_enter
+@test "test 01" {
+    run bash -c "echo -e \"1\n2\n\" | bash StartCmd.sh"
     assert_success
-    assert_output '1'
+    assert_line --index 0 '1'
+    assert_line --index 1 '2'
 }
