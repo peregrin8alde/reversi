@@ -1,33 +1,40 @@
 TARGETDIR = _build
 SRCDIR = src
-COMMANDS = ${SRCDIR}/command/start.sh
-MODELS = ${SRCDIR}/model/core/ReversiModel.sh
-VIEWS = ${SRCDIR}/view/title/resource/Title.txt \
-        ${SRCDIR}/view/title/TitleView.sh
-BINSRC = ${COMMANDS}
-LIBSRC = ${MODELS} ${VIEWS}
-SRCS = ${BINSRC} ${LIBSRC}
+
+COMMAND_STARTSTOP_DIR = ${SRCDIR}/command/startstop
+MODEL_CORE_DIR = ${SRCDIR}/model/core
+VIEW_TITLE_DIR = ${SRCDIR}/view/title
+VIEWMODEL_TITLE_DIR = ${SRCDIR}/viewmodel/title
 
 
-all : ${SRCS} TitleViewModel
+all : init CommandStartStop ModelCore ViewTitle ViewModelTitle
+	echo "finish"
+
+CommandStartStop : ${COMMAND_STARTSTOP_DIR}/src/*
+	cd ${COMMAND_STARTSTOP_DIR} && ${MAKE}
+	cp -rpf ${COMMAND_STARTSTOP_DIR}/${TARGETDIR}/* ${TARGETDIR}/
+
+ModelCore : ${MODEL_CORE_DIR}/src/*
+	cd ${MODEL_CORE_DIR} && ${MAKE}
+	cp -rpf ${MODEL_CORE_DIR}/${TARGETDIR}/* ${TARGETDIR}/
+
+ViewTitle : ${VIEW_TITLE_DIR}/src/*
+	cd ${VIEW_TITLE_DIR} && ${MAKE}
+	cp -rpf ${VIEW_TITLE_DIR}/${TARGETDIR}/* ${TARGETDIR}/
+
+ViewModelTitle : ${VIEWMODEL_TITLE_DIR}/src/*
+	cd ${VIEWMODEL_TITLE_DIR} && ${MAKE}
+	cp -rpf ${VIEWMODEL_TITLE_DIR}/${TARGETDIR}/* ${TARGETDIR}/
+
+
+.PHONY : init clean run
+
+init : 
 	mkdir -p ${TARGETDIR}
-	mkdir -p ${TARGETDIR}/bin
-	cp -f ${BINSRC} ${TARGETDIR}/bin/
-	chmod +x ${TARGETDIR}/bin/*
-	ls -lha ${TARGETDIR}/bin/
-	mkdir -p ${TARGETDIR}/lib
-	cp -f ${LIBSRC} ${TARGETDIR}/lib/
-	chmod +x ${TARGETDIR}/lib/*
-	ls -lha ${TARGETDIR}/lib/
-
-TitleViewModel : ${SRCDIR}/viewmodel/title/src/TitleViewModel.sh
-	cd ${SRCDIR}/viewmodel/title && ${MAKE}
-	mkdir -p ${TARGETDIR}/lib
-	cp -rf ${SRCDIR}/viewmodel/title/${TARGETDIR}/lib/* ${TARGETDIR}/lib/
-
-
-.PHONY : clean
 
 clean :
-	cd ${SRCDIR}/viewmodel/title && ${MAKE} clean
+	cd ${COMMAND_STARTSTOP_DIR} && ${MAKE} clean
+	cd ${MODEL_CORE_DIR} && ${MAKE} clean
+	cd ${VIEW_TITLE_DIR} && ${MAKE} clean
+	cd ${VIEWMODEL_TITLE_DIR} && ${MAKE} clean
 	rm -rf ${TARGETDIR}
