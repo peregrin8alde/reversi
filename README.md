@@ -41,7 +41,11 @@
 
 詳細はマニュアルを参照 
 
+```
+export PATH=./bin:./lib:$PATH
 
+bin/StartCmd.sh
+```
 
 ## Support
 

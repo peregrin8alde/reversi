@@ -1,14 +1,22 @@
 #!/bin/bash
 
+source TitleViewModel.sh
+
 function TitleView() {
-  titleResource="$1/lib/Title.txt"
+  titleResource="$1"
   column_count=0
+
+  return 0
 }
 
 function show_title() {
-  clear
+  #clear
   sed "s/%d/${column_count}/g" "${titleResource}"
   read
   column_count=$(event_enter)
+
+  printf -v "$1" "%s" "${column_count}"
+
+  return 0
 }
 

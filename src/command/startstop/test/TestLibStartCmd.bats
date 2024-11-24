@@ -12,12 +12,11 @@ teardown() {
     true
 }
 
-@test "test event_enter 01" {
-    source TitleViewModel.sh
-    
-    TitleViewModel
+@test "test 01" {
+    source LibStartCmd.sh
 
-    run event_enter
+    run StartCmd
     assert_success
-    assert_output '1'
+    # 出力なし
+    refute_output
 }
