@@ -3,15 +3,22 @@ SRCDIR = src
 
 export BATS_LIB_PATH = /usr/local/lib/bats
 
-lib : ${SRCDIR}/TitleView.sh ${SRCDIR}/resource/Title.txt test
+.PHONY : all
+all : compile test
+
+lib : ${SRCDIR}/TitleView.sh ${SRCDIR}/resource/Title.txt
 	mkdir -p ${TARGETDIR}/lib
 	cp -f ${SRCDIR}/TitleView.sh ${TARGETDIR}/lib/
 	cp -f ${SRCDIR}/resource/Title.txt ${TARGETDIR}/lib/
 
 
-.PHONY : test clean
+.PHONY : init compile test clean
+init : 
+	mkdir -p ${TARGETDIR}
 
-test :
+compile : lib
+
+test : compile
 	bats --tap test/TestTitleView.bats
 
 clean : 
