@@ -19,6 +19,8 @@
 # https://docs.gitlab.com/ee/ci/yaml/#default
 default:
   image: bash
+  script:
+    - apk add --no-cache make
 
 stages:          # List of stages for jobs, and their order of execution
   - build
