@@ -1,10 +1,10 @@
-TARGETDIR = _build
+export TARGETDIR ?= _build
 SRCDIR = src
 
-export BATS_LIB_PATH = /usr/local/lib/bats
+export BATS_LIB_PATH ?= /usr/local/lib/bats
 
 .PHONY : all
-all : bin lib test
+all : compile test
 
 bin : ${SRCDIR}/StartCmd.sh
 	mkdir -p ${TARGETDIR}/bin
@@ -16,8 +16,14 @@ lib : ${SRCDIR}/LibStartCmd.sh
 	cp -f ${SRCDIR}/LibStartCmd.sh ${TARGETDIR}/lib/
 	chmod +x ${TARGETDIR}/lib/*
 
-.PHONY : test clean
-test :
+
+.PHONY : init compile test clean
+init : 
+	mkdir -p ${TARGETDIR}
+
+compile : bin lib
+
+test : compile
 	bats --tap test/TestLibStartCmd.bats
 	bats --tap test/TestStartCmd.bats
 

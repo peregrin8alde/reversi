@@ -10,6 +10,8 @@ bats-core を利用
 ## セットアップ手順
 
 大量のリポジトリで必要になった場合に管理が面倒なため、個別のリポジトリのサブモジュールに（ Quick installation 参照）はせずマシン自体にインストールする。
+CI/CD などで自動テストする際にはテスト環境に事前インストールが必要なため注意。
+（ Gitlab だと runner 環境に必要）
 
 参考 : [Any OS: Installing Bats from source](https://bats-core.readthedocs.io/en/stable/installation.html#any-os-installing-bats-from-source)
 
