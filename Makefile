@@ -1,4 +1,4 @@
-TARGETDIR = _build
+export TARGETDIR ?= _build
 SRCDIR = src
 
 COMMAND_STARTSTOP_DIR = ${SRCDIR}/command/startstop

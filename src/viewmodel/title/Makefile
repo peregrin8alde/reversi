@@ -1,7 +1,7 @@
-TARGETDIR = _build
+export TARGETDIR ?= _build
 SRCDIR = src
 
-export BATS_LIB_PATH = /usr/local/lib/bats
+export BATS_LIB_PATH ?= /usr/local/lib/bats
 
 .PHONY : all
 all : compile test
