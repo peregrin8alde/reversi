@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# alpine 前提。本来は OS に合わせて処理
+apk add --no-cache git
+
 git clone https://github.com/bats-core/bats-core.git
 bats-core/install.sh /usr/local
 
