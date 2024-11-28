@@ -7,7 +7,7 @@ setup() {
     DIR="$( cd "$( dirname "$BATS_TEST_FILENAME" )" >/dev/null 2>&1 && pwd )"
 
     TARGETDIR="${TARGETDIR:-$DIR/../_build}"
-    PATH="${TARGETDIR}/bin:${TARGETDIR}/lib:${DIR}/stub:$PATH"
+    PATH="${DIR}/stub:${TARGETDIR}/bin:${TARGETDIR}/lib:$PATH"
 }
 
 teardown() {

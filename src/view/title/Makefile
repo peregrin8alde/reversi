@@ -1,22 +1,26 @@
 export TARGETDIR ?= _build
 SRCDIR = src
 
+LIB_TITLE_VIEW=lib/TitleView.sh
+RESOURCE_TITLE_TXT=resource/Title.txt
+
 export BATS_LIB_PATH ?= /usr/local/lib/bats
 
 .PHONY : all
 all : compile test
 
-lib : ${SRCDIR}/TitleView.sh ${SRCDIR}/resource/Title.txt
-	mkdir -p ${TARGETDIR}/lib
-	cp -f ${SRCDIR}/TitleView.sh ${TARGETDIR}/lib/
-	cp -f ${SRCDIR}/resource/Title.txt ${TARGETDIR}/lib/
+${TARGETDIR}/${LIB_TITLE_VIEW} : ${SRCDIR}/${LIB_TITLE_VIEW}
+	mkdir -p $(@D)
+	cp -f $< $@
+	chmod +x $@
+
+${TARGETDIR}/${RESOURCE_TITLE_TXT} : ${SRCDIR}/${RESOURCE_TITLE_TXT}
+	mkdir -p $(@D)
+	cp -f $< $@
 
 
-.PHONY : init compile test clean
-init : 
-	mkdir -p ${TARGETDIR}
-
-compile : lib
+.PHONY : compile test clean
+compile : ${TARGETDIR}/${LIB_TITLE_VIEW} ${TARGETDIR}/${RESOURCE_TITLE_TXT}
 
 test : compile
 	bats --tap test/TestTitleView.bats
