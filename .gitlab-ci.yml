@@ -49,6 +49,9 @@ unit-test-job:   # This job runs in the test stage.
     - make -t compile
     - make test
     - echo "Code coverage is 90%"
+  artifacts:
+    reports:
+      junit: ${TARGETDIR}/report/**/*.xml
 
 lint-test-job:   # This job also runs in the test stage.
   stage: test    # It can run at the same time as unit-test-job (in parallel).
