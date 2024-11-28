@@ -1,4 +1,4 @@
-export TARGETDIR ?= _build
+export TARGETDIR ?= $(CURDIR)/_build
 SRCDIR = src
 
 COMMAND_STARTSTOP_DIR = ${SRCDIR}/command/startstop
@@ -6,35 +6,22 @@ MODEL_CORE_DIR = ${SRCDIR}/model/core
 VIEW_TITLE_DIR = ${SRCDIR}/view/title
 VIEWMODEL_TITLE_DIR = ${SRCDIR}/viewmodel/title
 
-
-all : init CommandStartStop ModelCore ViewTitle ViewModelTitle
+.PHONY : all
+all : compile test
 	echo "finish"
 
-CommandStartStop : ${COMMAND_STARTSTOP_DIR}/src/*
-	cd ${COMMAND_STARTSTOP_DIR} && ${MAKE} compile
-	cp -rpf ${COMMAND_STARTSTOP_DIR}/${TARGETDIR}/* ${TARGETDIR}/
-
-ModelCore : ${MODEL_CORE_DIR}/src/*
-	cd ${MODEL_CORE_DIR} && ${MAKE} compile
-	cp -rpf ${MODEL_CORE_DIR}/${TARGETDIR}/* ${TARGETDIR}/
-
-ViewTitle : ${VIEW_TITLE_DIR}/src/*
-	cd ${VIEW_TITLE_DIR} && ${MAKE} compile
-	cp -rpf ${VIEW_TITLE_DIR}/${TARGETDIR}/* ${TARGETDIR}/
-
-ViewModelTitle : ${VIEWMODEL_TITLE_DIR}/src/*
-	cd ${VIEWMODEL_TITLE_DIR} && ${MAKE} compile
-	cp -rpf ${VIEWMODEL_TITLE_DIR}/${TARGETDIR}/* ${TARGETDIR}/
-
-
 .PHONY : init compile test clean
-
 init : 
 	mkdir -p ${TARGETDIR}
 
-compile : init CommandStartStop ModelCore ViewTitle ViewModelTitle
+compile : init
+	cd ${COMMAND_STARTSTOP_DIR} && ${MAKE} compile
+	cd ${MODEL_CORE_DIR} && ${MAKE} compile
+	cd ${VIEW_TITLE_DIR} && ${MAKE} compile
+	cd ${VIEWMODEL_TITLE_DIR} && ${MAKE} compile
 
-test :
+test : compile
+	export BASE_DIR=${TARGETDIR}
 	cd ${COMMAND_STARTSTOP_DIR} && ${MAKE} test
 	cd ${MODEL_CORE_DIR} && ${MAKE} test
 	cd ${VIEW_TITLE_DIR} && ${MAKE} test
