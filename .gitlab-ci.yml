@@ -75,6 +75,7 @@ publish:
   stage: deploy
   script:
     - tar zcvf release.tar.gz _build/
+    - apk add --no-cache curl
     - |
       curl --location --header "JOB-TOKEN: ${CI_JOB_TOKEN}" \
            --upload-file release.tar.gz \
