@@ -83,7 +83,8 @@ prepare_job:
   rules:
     - if: $CI_COMMIT_TAG
   script:
-    - TAG=v$(cat VERSION)
+    #- TAG=v$(cat VERSION)
+    - TAG=$CI_COMMIT_TAG
     - echo "EXTRA_DESCRIPTION=some message" >> variables.env
     - echo "TAG=${TAG}" >> variables.env
     - tar zcvf release.tar.gz _build/
