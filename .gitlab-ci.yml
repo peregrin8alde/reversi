@@ -19,8 +19,6 @@
 # https://docs.gitlab.com/ee/ci/yaml/#default
 default:
   image: bash
-  before_script:
-    - bash src/build_tool/setup_default.sh
 variables:
   TARGETDIR: "${CI_PROJECT_DIR}/_build"
 
@@ -33,6 +31,8 @@ stages:          # List of stages for jobs, and their order of execution
 
 build-job:       # This job runs in the build stage, which runs first.
   stage: build
+  before_script:
+    - bash src/build_tool/setup_default.sh
   script:
     - make compile
   artifacts:
