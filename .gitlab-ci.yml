@@ -28,6 +28,8 @@ stages:          # List of stages for jobs, and their order of execution
   - build
   - test
   - deploy
+  - prepare
+  - release
 
 build-job:       # This job runs in the build stage, which runs first.
   stage: build
@@ -67,20 +69,49 @@ deploy-job:      # This job runs in the deploy stage.
     - echo "Deploying application..."
     - echo "Application successfully deployed."
 
-# artifacts は期限切れがあるので、リリース向けには汎用パッケージリポジトリを使う
+
+# リリースの自動生成
+## artifacts は期限切れがあるので、リリース向けには汎用パッケージリポジトリを使う
+## 毎回実施するのではなく、タグ作成に合わせてリリースと一緒に実施
+## （リリース可能という意味では main へのマージで実施したいところだが、 main へのマージが落ち着くまでは手動タグ生成に合わせる）
 ## 参考 : 
 ##   - https://forum.gitlab.com/t/add-a-specific-file-of-a-project-into-the-release-gitlab/82124/3
 ##   - https://docs.gitlab.com/ee/user/packages/generic_packages/#publish-a-generic-package-by-using-cicd
-publish:
-  stage: deploy
+##   - https://docs.gitlab.com/ee/user/project/releases/release_cicd_examples.html
+prepare_job:
+  stage: prepare
+  rules:
+    - if: $CI_COMMIT_TAG
   script:
+    - TAG=v$(cat VERSION)
+    - echo "EXTRA_DESCRIPTION=some message" >> variables.env
+    - echo "TAG=${TAG}" >> variables.env
     - tar zcvf release.tar.gz _build/
     - apk add --no-cache curl
     - |
       curl --location --header "JOB-TOKEN: ${CI_JOB_TOKEN}" \
-           --upload-file ${CI_PROJECT_DIR}/release.tar.gz \
-           "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/my_package/0.1.0/release.tar.gz"
+           --upload-file release.tar.gz \
+           "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/my_package/${TAG}/release.tar.gz"
+  artifacts:
+    reports:
+      dotenv: variables.env
 
-# リリースの自動生成
-## 参考 : https://docs.gitlab.com/ee/user/project/releases/release_cicd_examples.html
-
+release_job:
+  stage: release
+  image: registry.gitlab.com/gitlab-org/release-cli:latest
+  needs:
+    - job: prepare_job
+      artifacts: true
+  rules:
+    - if: $CI_COMMIT_TAG
+  script:
+    - echo "running release_job for $TAG"
+  release:
+    name: 'Release $TAG'
+    description: 'Created using the release-cli $EXTRA_DESCRIPTION'
+    tag_name: '$TAG'
+    ref: '$CI_COMMIT_SHA'
+    assets:
+      links:
+        - name: 'asset1'
+          url: '${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/my_package/${TAG}/release.tar.gz'
