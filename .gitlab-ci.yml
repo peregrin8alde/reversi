@@ -72,7 +72,7 @@ deploy-job:      # This job runs in the deploy stage.
 
 # リリースの自動生成
 ## artifacts は期限切れがあるので、リリース向けには汎用パッケージリポジトリを使う
-## 毎回実施するのではなく、タグ作成に合わせてリリースと一緒に実施
+## 毎回実施するのではなく、タグ作成に合わせて実施
 ## （リリース可能という意味では main へのマージで実施したいところだが、 main へのマージが落ち着くまでは手動タグ生成に合わせる）
 ## 参考 : 
 ##   - https://forum.gitlab.com/t/add-a-specific-file-of-a-project-into-the-release-gitlab/82124/3
@@ -114,5 +114,5 @@ release_job:
     ref: '$CI_COMMIT_SHA'
     assets:
       links:
-        - name: 'asset1'
+        - name: 'release.tar.gz'
           url: '${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/my_package/${TAG}/release.tar.gz'
