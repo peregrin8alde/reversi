@@ -159,6 +159,11 @@ bash における関数の return 値も意味としては同様であり、 c �
 * https://jeffreypalermo.com/tag/onion-architecture/[オニオンアーキテクチャ]
 * https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html[クリーンアーキテクチャ]
 
+ここでは、オニオンアーキテクチャやクリーンアーキテクチャはヘキサゴンアーキテクチャをより具体化／細分化したものと考え、
+基本はヘキサゴンアーキテクチャとしてオニオンアーキテクチャやクリーンアーキテクチャを参考に必要に応じて
+各レイヤーを細分化することにする。
+
+
 --
 . テスト仕様書の作成
 +
