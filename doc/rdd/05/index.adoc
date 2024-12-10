@@ -53,11 +53,37 @@
 セカンダリアクター
 
 アダプター
-User Side
-Data Side
-Administrator Side
-Extra Service Side
+User Side Port
+Data Side Port
+Administrator Side Port
+Extra Service Side Port
+
+
+
+test harness adapter
+CUI adapter
+http adapter
+app to app adapter
+DB adapter
+mock DB
+mock app
+
+test harness (user)
+user
+web
+app
+
+administrator
+test harness (administrator)
+
+
 |===
+
+
+参照方向は？
+セカンダリ側でもアダプタ＝＞ポート＝＞ユースケース＝＞ドメイン？
+（依存方向の話。オニオンやクリーンではそうなるはず？）
+
 
 
 .システム構成要素一覧
@@ -67,6 +93,9 @@ Extra Service Side
 
 
 === ドメイン層
+
+実現したい概念そのもの
+
 
 ゲーム盤
 2 種類の駒
@@ -80,6 +109,7 @@ Extra Service Side
 エンティティ
 変化するパラメータを持ったオブジェクト。持っているパラメータが変化しても存在は同じ。
 存在を見分けるために不変の id を持つ。
+可能な限り値オブジェクトを使った方がよい？
 
 サービス
 物としてモデリングできない存在
@@ -99,6 +129,8 @@ Extra Service Side
 
 
 === ユースケース（アプリケーション）層
+
+アプリケーションで実現するためのルール
 
 駒の数の計算
 勝敗の判定
